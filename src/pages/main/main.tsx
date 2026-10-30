@@ -198,6 +198,30 @@ const AppWrapper = observer(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [active_tab]);
 
+    // Keep the floating Run panel just below the tab bar so it never covers tabs.
+    useEffect(() => {
+        const root = document.documentElement;
+        const update = () => {
+            const list = document.querySelector('.main__tabs .dc-tabs__list');
+            const rect = list instanceof HTMLElement ? list.getBoundingClientRect() : null;
+            if (rect && rect.height > 0 && rect.bottom > 0) {
+                root.style.setProperty('--dt-run-panel-top', `${Math.round(rect.bottom + 8)}px`);
+            } else {
+                root.style.removeProperty('--dt-run-panel-top');
+            }
+        };
+        update();
+        const interval = setInterval(update, 1000);
+        window.addEventListener('resize', update);
+        window.addEventListener('scroll', update, true);
+        return () => {
+            clearInterval(interval);
+            window.removeEventListener('resize', update);
+            window.removeEventListener('scroll', update, true);
+            root.style.removeProperty('--dt-run-panel-top');
+        };
+    }, []);
+
     useEffect(() => {
         let timer: ReturnType<typeof setTimeout>;
         if (dashboard_strategies.length > 0) { timer = setTimeout(() => { updateWorkspaceName(); }); }

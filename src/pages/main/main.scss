@@ -189,7 +189,7 @@ body {
     &__run-strategy-wrapper {
         position: fixed !important;
         inset-inline-end: 1.6rem;
-        top: 7rem;
+        top: var(--dt-run-panel-top, 7rem);
         z-index: 9995;
         pointer-events: none;
 
@@ -203,7 +203,7 @@ body {
             &__container { background-color: var(--general-main-1); }
         }
 
-        @include mobile-or-tablet-screen { top: 5.5rem; }
+        @include mobile-or-tablet-screen { top: var(--dt-run-panel-top, 5.5rem); }
     }
 
     &__sidebar-wrapper {
