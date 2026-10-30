@@ -86,23 +86,6 @@ const SpeedControl: React.FC<TSpeedControl> = ({ className, compact }) => {
 
     return (
         <div className={`speed-control ${compact ? 'speed-control--compact' : ''} ${className || ''}`}>
-            {/* Normal / Crazy / Turbo tier selector */}
-            <div className='speed-control__group' role='group' aria-label='Execution speed'>
-                {OPTIONS.map(opt => (
-                    <button
-                        key={opt.value}
-                        type='button'
-                        title={opt.title}
-                        aria-pressed={speed === opt.value}
-                        className={`speed-control__btn speed-control__btn--${opt.value} ${
-                            speed === opt.value ? 'active' : ''
-                        }`}
-                        onClick={() => setExecutionSpeed(opt.value)}
-                    >
-                        {opt.label}
-                    </button>
-                ))}
-            </div>
 
             {/* ⚡ Fast — supersonic zero-latency execution toggle
                 When active, the engine:
@@ -121,7 +104,7 @@ const SpeedControl: React.FC<TSpeedControl> = ({ className, compact }) => {
                 className={`speed-control__fast ${fastExec ? 'active' : ''}`}
                 onClick={() => setFastExecutionEnabled(!fastExec)}
             >
-                ⚡ Fast
+                {fastExec ? '⚡ Fast: ON' : '⚡ Fast: OFF'}
             </button>
 
             {/* Diagnostics toggle — visible when Fast is enabled */}
