@@ -41,7 +41,7 @@ const LoginSuspensionPage = () => {
             <div className='login-suspension__content'>
                 <div className='login-suspension__brand'>
                     <div className='login-suspension__brand-icon'>⚡</div>
-                    <h1 className='login-suspension__brand-name'>Marksyntrader</h1>
+                    <h1 className='login-suspension__brand-name'>Digittrader</h1>
                     <p className='login-suspension__brand-tagline'>
                         Visual Trading Bot — Powered by Deriv
                     </p>

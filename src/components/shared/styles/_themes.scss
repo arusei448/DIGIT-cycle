@@ -66,16 +66,16 @@
 
     .theme--light {
         // General
-        --general-main-1: #{constants.$color-white};
-        --general-main-2: #{constants.$color-white};
+        --general-main-1: #{constants.$color-cream};
+        --general-main-2: #{constants.$color-cream};
         --general-main-3: #{constants.$color-grey-1};
         --general-main-4: #{constants.$alpha-color-white-4};
-        --general-section-1: #{constants.$color-grey-2};
-        --general-section-2: #{constants.$color-grey-2};
+        --general-section-1: #{constants.$color-cream-2};
+        --general-section-2: #{constants.$color-cream-2};
         --general-section-3: #{constants.$color-grey-11};
         --general-section-4: #{constants.$color-grey-12};
-        --general-section-5: #{constants.$color-grey-2};
-        --general-section-6: #{constants.$color-grey-2};
+        --general-section-5: #{constants.$color-cream-2};
+        --general-section-6: #{constants.$color-cream-2};
         --general-disabled: #{constants.$color-grey-3};
         --general-hover: #{constants.$color-grey-4};
         --general-active: #{constants.$color-grey-5};

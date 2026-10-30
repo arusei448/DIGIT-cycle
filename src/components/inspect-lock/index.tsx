@@ -85,7 +85,7 @@ const InspectLock: React.FC = () => {
         <div className='inspect-lock'>
             <div className={`inspect-lock__box ${shake ? 'shake' : ''}`}>
                 <div className='inspect-lock__logo'>🔐</div>
-                <h2 className='inspect-lock__title'>AHMED SYN TRADER</h2>
+                <h2 className='inspect-lock__title'>DIGITTRADER</h2>
                 <p className='inspect-lock__subtitle'>Security Lock — Enter PIN to continue</p>
                 <div className='inspect-lock__dots'>
                     {Array.from({ length: CORRECT_PIN.length }, (_, i) => (

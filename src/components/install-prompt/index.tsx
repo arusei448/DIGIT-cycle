@@ -100,11 +100,11 @@ const InstallPrompt: React.FC = () => {
                 {/* Icon + branding */}
                 <div className='install-popup__top'>
                     <div className='install-popup__icon'>
-                        <img src='/logo.jpeg' alt='Marksyntrader' />
+                        <img src='/logo.png' alt='Digittrader' />
                     </div>
                     <div className='install-popup__brand'>
                         <span className='install-popup__title'>Install App</span>
-                        <span className='install-popup__sub'>Marksyntrader · Ahmed Syn Trader</span>
+                        <span className='install-popup__sub'>Digittrader</span>
                     </div>
                 </div>
 

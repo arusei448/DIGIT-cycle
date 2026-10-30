@@ -860,7 +860,7 @@ const FreeBots = observer(() => {
 
       <div className='free-bots__header'>
         <div className='free-bots__header-left'>
-          <h1>🤖 <span>AHMED SYN TRADER</span> — Free Bots</h1>
+          <h1>🤖 <span>DIGITTRADER</span> — Free Bots</h1>
           <p>{FREE_BOTS.length} professional bots • Click "Load Bot" to open in Bot Builder</p>
         </div>
       </div>
@@ -891,7 +891,7 @@ const FreeBots = observer(() => {
             {bot.artwork && (
               <div className={`free-bots__artwork free-bots__artwork--${bot.artworkPosition || 'banner'}`}>
                 <img src={bot.artwork} alt={`${bot.name} strategy artwork`} loading='lazy' />
-                <span className='free-bots__artwork-label'>AHMED SYN</span>
+                <span className='free-bots__artwork-label'>DIGITTRADER</span>
               </div>
             )}
             <div className='free-bots__card-top'>

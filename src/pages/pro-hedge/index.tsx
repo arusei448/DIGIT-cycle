@@ -293,7 +293,7 @@ const ProHedge = observer(() => {
       <div className='pro-hedge__header'>
         <div>
           <h1>⚖ Pro Hedge</h1>
-          <p>AHMED SYN TRADER — Leg A + Leg B simultaneous hedge strategy</p>
+          <p>DIGITTRADER — Leg A + Leg B simultaneous hedge strategy</p>
         </div>
         <div className='pro-hedge__header-right'>
           {balance !== null && (

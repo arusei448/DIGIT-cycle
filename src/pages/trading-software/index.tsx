@@ -339,7 +339,7 @@ const TradingSoftware: React.FC = () => {
             <div className='ts-header'>
                 <div className='ts-header__brand'>
                     <span className='ts-header__logo'>📊</span>
-                    <span className='ts-header__title'>AHMED SYN TRADER — <span>Trading Software</span></span>
+                    <span className='ts-header__title'>DIGITTRADER — <span>Trading Software</span></span>
                 </div>
                 <div className='ts-header__market'>
                     <label>Market:</label>

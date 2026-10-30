@@ -81,7 +81,7 @@ const Cards = observer(({ is_mobile, has_dashboard_strategies }: TCardProps) => 
             id: 'quick-strategy',
             icon: <DerivLightQuickStrategyIcon height='48px' width='48px' />,
             content: <Localize i18n_default_text='Quick strategy' />,
-            callback: () => setActiveTab(DBOT_TABS.AUTO_TRADES),
+            callback: () => setFormVisibility(true),
         },
     ]
         // Keep the three primary dashboard actions visible on mobile and desktop.

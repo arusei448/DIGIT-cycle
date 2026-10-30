@@ -77,11 +77,11 @@ const PWAInstall: React.FC = () => {
 
             <div className='pwa-install__top'>
                 <div className='pwa-install__icon-wrap'>
-                    <img src='/logo.jpeg' alt='logo' />
+                    <img src='/logo.png' alt='logo' />
                 </div>
                 <div className='pwa-install__brand'>
                     <strong className='pwa-install__title'>Install App</strong>
-                    <span className='pwa-install__sub'>Marksyntrader · Ahmed Syn Trader</span>
+                    <span className='pwa-install__sub'>Digittrader</span>
                 </div>
             </div>
 

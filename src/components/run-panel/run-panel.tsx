@@ -387,14 +387,12 @@ const RunPanel = observer(() => {
     const { statistics } = transactions;
     const { active_tour, active_tab } = dashboard;
     const { total_payout, total_profit, total_stake, won_contracts, lost_contracts, number_of_runs } = statistics;
-    const { BOT_BUILDER, AHMED_SCALPER_BOTS, BULK_TRADE, AUTO_TRADES, DCIRCLES } = DBOT_TABS;
+    const { BOT_BUILDER } = DBOT_TABS;
 
     // Summary/Transactions/Journal are intentionally available on mobile only
-    // for the four bot execution surfaces requested by the mobile layout:
-    // Bot Builder, Scalper Bots, Bulk Trade, and Auto Trades.
-    const MOBILE_RUN_PANEL_TABS = [BOT_BUILDER, AHMED_SCALPER_BOTS, BULK_TRADE, AUTO_TRADES];
+    // for the Bot Builder execution surface.
+    const MOBILE_RUN_PANEL_TABS = [BOT_BUILDER];
     const hide_on_mobile = !isDesktop && !MOBILE_RUN_PANEL_TABS.includes(active_tab);
-    const hide_on_dcircles = active_tab === DCIRCLES;
 
     React.useEffect(() => {
         onMount();
@@ -408,7 +406,7 @@ const RunPanel = observer(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (hide_on_mobile || hide_on_dcircles) return null;
+    if (hide_on_mobile) return null;
 
     const content = (
         <DrawerContent
