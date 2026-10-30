@@ -202,7 +202,7 @@ const AppWrapper = observer(() => {
     useEffect(() => {
         const root = document.documentElement;
         const update = () => {
-            const list = document.querySelector('.main__tabs .dc-tabs__list');
+            const list = document.querySelector('.dc-tabs__list--main__tabs, .dc-tabs__list.main__tabs--drawer-only');
             const rect = list instanceof HTMLElement ? list.getBoundingClientRect() : null;
             if (rect && rect.height > 0 && rect.bottom > 0) {
                 root.style.setProperty('--dt-run-panel-top', `${Math.round(rect.bottom + 8)}px`);
