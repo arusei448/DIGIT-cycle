@@ -95,6 +95,32 @@ export class DerivWSAccountsService {
     }
 
     /**
+     * Resets an Options demo account balance via
+     * POST /trading/v1/options/accounts/{account_id}/reset-demo-balance
+     */
+    static async resetDemoBalance(accessToken: string, accountId: string): Promise<void> {
+        const endpoint = `${this.getDerivWSBaseURL()}/accounts/${accountId}/reset-demo-balance`;
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json',
+                'Deriv-App-ID': process.env.NEXT_PUBLIC_DERIV_APP_ID || '',
+            },
+        });
+        if (!response.ok) {
+            let message = `${response.status} ${response.statusText}`;
+            try {
+                const body = await response.json();
+                message = body?.errors?.[0]?.message || body?.error?.message || body?.message || message;
+            } catch {
+                // keep status text
+            }
+            throw new Error(message);
+        }
+    }
+
+    /**
      * Gets the default account (first account from the list)
      * @returns DerivAccount object or null if no accounts available
      */
