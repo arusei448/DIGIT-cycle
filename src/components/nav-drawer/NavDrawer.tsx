@@ -64,7 +64,7 @@ const NavDrawer: React.FC = observer(() => {
             {open && (
                 <div className='nav-drawer__panel'>
                     <div className='nav-drawer__header'>
-                        <span className='nav-drawer__brand'>⚡ AHMED TRADE</span>
+                        <span className='nav-drawer__brand'>⚡ DIGITTRADER</span>
                         <button className='nav-drawer__close' onClick={close}>✕</button>
                     </div>
                     <nav className='nav-drawer__list'>

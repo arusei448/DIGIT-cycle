@@ -35,7 +35,7 @@ const LoadingPage: React.FC<LoadingPageProps> = ({ is_loading }) => {
                 <div className='ahst-loading__logo'>
                     <span className='ahst-loading__logo-d'>D</span>
                 </div>
-                <h1 className='ahst-loading__title'>AHMEDSYNTRADERSITE</h1>
+                <h1 className='ahst-loading__title'>DIGITTRADER</h1>
                 <p className='ahst-loading__subtitle'>Advanced AI Trading Platform</p>
                 <div className='ahst-loading__bar-wrap'>
                     <div className='ahst-loading__bar' />
