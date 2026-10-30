@@ -9,6 +9,20 @@
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api_base } from '@/external/bot-skeleton/services/api/api-base';
+import { getAuthInfo } from '@/external/deriv-core';
+import { DerivWSAccountsService } from '@/services/derivws-accounts.service';
+import { isDemoAccount } from '@/utils/account-helpers';
+
+/** Resolve the Options demo account id (e.g. DOT…) to reset. */
+function resolveDemoAccountId(preferred?: string): string | null {
+    const stored = DerivWSAccountsService.getStoredAccounts() ?? [];
+    const isDemo = (id: string) =>
+        stored.some(a => a.account_id === id && a.account_type === 'demo') || isDemoAccount(id);
+    if (preferred && isDemo(preferred)) return preferred;
+    const active = localStorage.getItem('active_loginid') ?? '';
+    if (active && (localStorage.getItem('account_type') === 'demo' || isDemo(active))) return active;
+    return stored.find(a => a.account_type === 'demo')?.account_id ?? null;
+}
 
 /** Try to extract the virtual account's access token from localStorage. */
 function getVirtualToken(): string | null {
@@ -53,16 +67,28 @@ export const useResetDemoBalance = () => {
     const [resetError, setResetError] = useState<string | null>(null);
     const [resetSuccess, setResetSuccess] = useState(false);
 
-    const resetBalance = useCallback(async () => {
+    const resetBalance = useCallback(async (accountId?: string) => {
         if (isResetting) return;
-        if (!api_base.api) {
-            toast.error('Not connected to Deriv API. Please log in first.', { autoClose: 3500 });
-            return;
-        }
         setIsResetting(true);
         setResetError(null);
         setResetSuccess(false);
         try {
+            // Preferred: Deriv REST endpoint
+            // POST /trading/v1/options/accounts/{account_id}/reset-demo-balance
+            const accessToken = getAuthInfo()?.access_token;
+            const demoAccountId = resolveDemoAccountId(accountId);
+            if (accessToken && demoAccountId) {
+                await DerivWSAccountsService.resetDemoBalance(accessToken, demoAccountId);
+                setResetSuccess(true);
+                toast.success('✅ Demo balance reset to 10,000 USD!', { autoClose: 3000 });
+                (api_base.api as any)?.send({ balance: 1 })?.catch(() => {});
+                setTimeout(() => setResetSuccess(false), 2000);
+                return;
+            }
+            if (!api_base.api) {
+                throw new Error('Not connected to Deriv API. Please log in first.');
+            }
+
             // Ensure we are authorized as the virtual account.
             // api_base.account_info is set after a successful `authorize` response.
             const accInfo: any = (api_base as any).account_info;

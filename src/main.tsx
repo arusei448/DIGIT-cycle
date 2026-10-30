@@ -43,7 +43,7 @@ applyPrimaryColorFromConfig();
 const appRoot = document.getElementById('root');
 
 if (!appRoot) {
-    throw new Error('Marksyntrader root element is missing.');
+    throw new Error('Digittrader root element is missing.');
 }
 
 const bootWindow = window as Window & { __markMarksyntraderAppStarted?: () => void };

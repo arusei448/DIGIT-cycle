@@ -51,21 +51,15 @@ const ChartWrapper   = lazy(() => import('../chart/chart-wrapper'));
 const AutoSignals    = lazy(() => import('../auto-signals'));
 const Tutorial       = lazy(() => import('../tutorials'));
 const FreeBots       = lazy(() => import('../free-bots'));
-const DCircles       = lazy(() => import('../dcircles'));
 const AutoDigits     = lazy(() => import('../auto-digits'));
-const AutoLab        = lazy(() => import('../auto-lab'));
 const TradingSoftware = lazy(() => import('../trading-software'));
 const SpeedLab       = lazy(() => import('../speed-lab'));
 const ProHedge       = lazy(() => import('../hedge-trading'));
-const ManualTrader   = lazy(() => import('../manual-trader'));
 const DTrader        = lazy(() => import('../dtrader'));
 const CopyTrading    = lazy(() => import('../copy-trading'));
 const Reports        = lazy(() => import('../reports'));
-const BulkTrade      = lazy(() => import('../bulk-trade'));
 const Analysis       = lazy(() => import('../analysis'));
 const AhmedLearning  = lazy(() => import('../ahmed-learning'));
-const AutoTrades     = lazy(() => import('../auto-trades'));
-const ScalperBots    = lazy(() => import('../scalper-bots'));
 
 const AppWrapper = observer(() => {
     const { connectionStatus } = useApiBase();
@@ -102,22 +96,16 @@ const AppWrapper = observer(() => {
         'auto_signals',     // 1
         'ahmed_learning',   // 2
         'free_bots',        // 3
-        'ahmed_scalper_bots', // 4
-        'auto_digits',      // 5
-        'auto_lab',         // 6
-        'dcircles',         // 7
-        'speed_lab',        // 8
-        'pro_hedge',        // 9
-        'chart',            // 10
-        'manual_trader',    // 11
-        'dtrader',          // 12
-        'auto_trades',      // 13
-        'copy_trading',     // 14
-        'reports',          // 15
-        'bulk_trade',       // 16
-        'analysis',         // 17
-        'tutorial',         // 18
-        'trading_software', // 19
+        'auto_digits',      // 4
+        'speed_lab',        // 5
+        'pro_hedge',        // 6
+        'chart',            // 7
+        'dtrader',          // 8
+        'copy_trading',     // 9
+        'reports',          // 10
+        'analysis',         // 11
+        'tutorial',         // 12
+        'trading_software', // 13
     ];
 
     const { isDesktop } = useDevice();
@@ -209,6 +197,30 @@ const AppWrapper = observer(() => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [active_tab]);
+
+    // Keep the floating Run panel just below the tab bar so it never covers tabs.
+    useEffect(() => {
+        const root = document.documentElement;
+        const update = () => {
+            const list = document.querySelector('.dc-tabs__list--main__tabs, .dc-tabs__list.main__tabs--drawer-only');
+            const rect = list instanceof HTMLElement ? list.getBoundingClientRect() : null;
+            if (rect && rect.height > 0 && rect.bottom > 0) {
+                root.style.setProperty('--dt-run-panel-top', `${Math.round(rect.bottom + 8)}px`);
+            } else {
+                root.style.removeProperty('--dt-run-panel-top');
+            }
+        };
+        update();
+        const interval = setInterval(update, 1000);
+        window.addEventListener('resize', update);
+        window.addEventListener('scroll', update, true);
+        return () => {
+            clearInterval(interval);
+            window.removeEventListener('resize', update);
+            window.removeEventListener('scroll', update, true);
+            root.style.removeProperty('--dt-run-panel-top');
+        };
+    }, []);
 
     useEffect(() => {
         let timer: ReturnType<typeof setTimeout>;
@@ -321,33 +333,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 4 — Ahmed Scalper Bots */}
-                            <div
-                                label={mkIcon(
-                                    <svg width='19' height='19' viewBox='0 0 24 24' fill='none' aria-hidden='true'>
-                                        <defs>
-                                            <linearGradient id='scalper-tab-gradient' x1='3' y1='21' x2='21' y2='3' gradientUnits='userSpaceOnUse'>
-                                                <stop offset='0' stopColor='#22d3ee' />
-                                                <stop offset='0.5' stopColor='#a78bfa' />
-                                                <stop offset='1' stopColor='#f472b6' />
-                                            </linearGradient>
-                                        </defs>
-                                        <path d='M13.4 2.5 4 13.4h6.6L9.7 21.5 20 10.2h-6.5l-.1-7.7Z'
-                                            fill='url(#scalper-tab-gradient)' stroke='#e0f2fe' strokeWidth='0.8'
-                                            strokeLinejoin='round' />
-                                        <circle cx='4' cy='5' r='1.2' fill='#fbbf24' />
-                                        <circle cx='20' cy='18.5' r='1' fill='#34d399' />
-                                    </svg>,
-                                    'Scalper Bots'
-                                )}
-                                id='id-scalper-bots'
-                            >
-                                <Suspense fallback={tabLoader('Loading Scalper Bots...')}>
-                                    <ScalperBots />
-                                </Suspense>
-                            </div>
-
-                            {/* 5 — Auto-Digits */}
+                            {/* 4 — Auto-Digits */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 2'/><path d='M5 4 3 2M19 4l2-2'/></svg>,
@@ -360,33 +346,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 6 — Auto Lab */}
-                            <div
-                                label={mkIcon(
-                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M4 19V5M4 19h16'/><path d='m7 15 4-4 3 2 5-7'/><circle cx='19' cy='6' r='1.5'/></svg>,
-                                    'Auto Lab'
-                                )}
-                                id='id-auto-lab'
-                            >
-                                <Suspense fallback={tabLoader('Loading Auto Lab...')}>
-                                    <AutoLab />
-                                </Suspense>
-                            </div>
-
-                            {/* 7 — D-Circles */}
-                            <div
-                                label={mkIcon(
-                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><circle cx='7' cy='12' r='4'/><circle cx='17' cy='12' r='4'/></svg>,
-                                    'D-Circles'
-                                )}
-                                id='id-dcircles'
-                            >
-                                <Suspense fallback={tabLoader('Loading D-Circles...')}>
-                                    <DCircles />
-                                </Suspense>
-                            </div>
-
-                            {/* 8 — Speed Lab */}
+                            {/* 5 — Speed Lab */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><polygon points='13 2 3 14 12 14 11 22 21 10 12 10 13 2'/></svg>,
@@ -399,7 +359,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 9 — Hedge Trading */}
+                            {/* 6 — Hedge Trading */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M12 2L2 7l10 5 10-5-10-5z'/><path d='M2 17l10 5 10-5'/><path d='M2 12l10 5 10-5'/></svg>,
@@ -412,7 +372,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 10 — Charts */}
+                            {/* 7 — Charts */}
                             <div
                                 label={mkIcon(
                                     <LabelPairedChartLineCaptionRegularIcon height='20px' width='20px' fill='var(--text-general)' />,
@@ -425,20 +385,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 11 — Manual Trader */}
-                            <div
-                                label={mkIcon(
-                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M18 20V10'/><path d='M12 20V4'/><path d='M6 20v-6'/></svg>,
-                                    'Manual Trader'
-                                )}
-                                id='id-manual-trader'
-                            >
-                                <Suspense fallback={tabLoader('Loading Manual Trader...')}>
-                                    <ManualTrader />
-                                </Suspense>
-                            </div>
-
-                            {/* 12 — D-Trader */}
+                            {/* 8 — D-Trader */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M4 19V5M4 19h16'/><path d='m7 15 3-4 3 2 5-7'/><circle cx='18' cy='6' r='2' fill='currentColor' stroke='none'/></svg>,
@@ -451,20 +398,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 13 — Auto Trades */}
-                            <div
-                                label={mkIcon(
-                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><circle cx='12' cy='12' r='3'/><path d='M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83'/></svg>,
-                                    'Auto Trades'
-                                )}
-                                id='id-auto-trades'
-                            >
-                                <Suspense fallback={tabLoader('Loading Auto Trades...')}>
-                                    <AutoTrades />
-                                </Suspense>
-                            </div>
-
-                            {/* 14 — Copy Trading */}
+                            {/* 9 — Copy Trading */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><polyline points='17 1 21 5 17 9'/><path d='M3 11V9a4 4 0 014-4h14'/><polyline points='7 23 3 19 7 15'/><path d='M21 13v2a4 4 0 01-4 4H3'/></svg>,
@@ -477,7 +411,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 15 — Reports */}
+                            {/* 10 — Reports */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><path d='M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z'/><polyline points='14 2 14 8 20 8'/><line x1='16' y1='13' x2='8' y2='13'/><line x1='16' y1='17' x2='8' y2='17'/></svg>,
@@ -490,20 +424,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 16 — Bulk Trade */}
-                            <div
-                                label={mkIcon(
-                                    <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><rect x='2' y='3' width='6' height='18' rx='1'/><rect x='9' y='8' width='6' height='13' rx='1'/><rect x='16' y='5' width='6' height='16' rx='1'/></svg>,
-                                    'Bulk Trade'
-                                )}
-                                id='id-bulk-trade'
-                            >
-                                <Suspense fallback={tabLoader('Loading Bulk Trade...')}>
-                                    <BulkTrade />
-                                </Suspense>
-                            </div>
-
-                            {/* 17 — Analysis */}
+                            {/* 11 — Analysis */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>,
@@ -516,7 +437,7 @@ const AppWrapper = observer(() => {
                                 </Suspense>
                             </div>
 
-                            {/* 18 — Tutorials */}
+                            {/* 12 — Tutorials */}
                             <div
                                 label={mkIcon(
                                     <LegacyGuide1pxIcon height='16px' width='16px' fill='var(--text-general)' className='icon-general-fill-g-path' />,
@@ -531,7 +452,7 @@ const AppWrapper = observer(() => {
                                 </div>
                             </div>
 
-                            {/* 19 — Trading Software */}
+                            {/* 13 — Trading Software */}
                             <div
                                 label={mkIcon(
                                     <svg width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'><rect x='2' y='3' width='20' height='14' rx='2'/><line x1='8' y1='21' x2='16' y2='21'/><line x1='12' y1='17' x2='12' y2='21'/></svg>,
@@ -553,9 +474,7 @@ const AppWrapper = observer(() => {
             {/* Floating runner is not needed on self-contained trading surfaces. */}
             {![
                 DBOT_TABS.AUTO_DIGITS,
-                DBOT_TABS.AUTO_LAB,
                 DBOT_TABS.CHART,
-                DBOT_TABS.MANUAL_TRADER,
                 DBOT_TABS.TUTORIAL,
             ].includes(active_tab) && <FloatingRunButton />}
             {/* Keep the mobile experience focused: WhatsApp is a Dashboard

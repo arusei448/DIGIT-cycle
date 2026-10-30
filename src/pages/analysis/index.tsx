@@ -209,7 +209,7 @@ const Analysis = observer(() => {
         <div className='analysis__disclaimer'>
           <span className='analysis__disclaimer-icon'>⚠</span>
           <div>
-            <strong>RISK DISCLAIMER</strong> — This AI analysis is for educational purposes only and does not constitute financial advice. Trading binary options involves significant risk. Past performance does not guarantee future results. Trade responsibly. AHMED SYN TRADER assumes no liability for trading losses.
+            <strong>RISK DISCLAIMER</strong> — This AI analysis is for educational purposes only and does not constitute financial advice. Trading binary options involves significant risk. Past performance does not guarantee future results. Trade responsibly. DIGITTRADER assumes no liability for trading losses.
           </div>
           <button onClick={() => setDisclaimer(false)}>✕</button>
         </div>
@@ -219,7 +219,7 @@ const Analysis = observer(() => {
       <div className='analysis__header'>
         <div>
           <h1>🔍 Analysis Tool</h1>
-          <p>AHMED SYN TRADER — AI-powered market signal scanner</p>
+          <p>DIGITTRADER — AI-powered market signal scanner</p>
         </div>
         <div className='analysis__header-stats'>
           <div className='analysis__stat-box'>

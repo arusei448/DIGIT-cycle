@@ -5,7 +5,7 @@ import './whatsapp-float.scss';
 /* ─── Constants ─── */
 const WA_GROUP_LINK = 'https://chat.whatsapp.com/EkscsxyF4j0CpuWzv0bqUw';
 const WA_ADMIN_NUM  = '254705486402';   // admin number (no +, no spaces)
-const SITE_LINK     = 'https://marksyntrader--marksyntrader.replit.app';
+const SITE_LINK = typeof window !== 'undefined' ? window.location.origin : '';
 
 const SK_POS      = 'wa_float_pos';
 const SK_OPEN     = 'wa_float_open';
@@ -118,7 +118,7 @@ function formatSignalText(s: SignalRecord, tf: string): string {
     const dateStr = s.date ?? new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     return (
         `╔═══════════════════╗\n` +
-        `   🚀 *MARKSYNTRADER*\n` +
+        `   🚀 *DIGITTRADER*\n` +
         `   ⚡ LIVE SIGNAL ALERT\n` +
         `╚═══════════════════╝\n\n` +
         `🤖 *Bot:* ${s.bot}\n` +
@@ -391,7 +391,7 @@ const WhatsAppFloat: React.FC = () => {
                 <div className='wa-pair-action-row'>
                     <span className='wa-pair-action-num'>1</span>
                     <div className='wa-pair-action-body'>
-                        <p className='wa-pair-action-title'>Join the Marksyntrader signals group</p>
+                        <p className='wa-pair-action-title'>Join the Digittrader signals group</p>
                         <a className='wa-pair-wa-btn' href={groupJoinLink} target='_blank' rel='noreferrer'>
                             <WaSvg size={15} /> Join WhatsApp Group
                         </a>

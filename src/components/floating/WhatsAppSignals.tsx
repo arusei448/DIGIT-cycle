@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './whatsapp-signals.scss';
 
 const WA_GROUP   = 'https://chat.whatsapp.com/EkscsxyF4j0CpuWzv0bqUw';
-const SITE_LINK  = 'https://marksyntrader--marksyntrader.replit.app';
+const SITE_LINK = typeof window !== 'undefined' ? window.location.origin : '';
 const WA_PHONE   = '0705486402';
 
 const STORAGE_POS = 'wa_signals_pos';

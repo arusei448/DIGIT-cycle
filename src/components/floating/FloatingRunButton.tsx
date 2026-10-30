@@ -5,7 +5,8 @@ import { useStore } from '@/hooks/useStore';
 import { useDevice } from '@deriv-com/ui';
 import './floating-run-button.scss';
 
-const STORAGE_KEY = 'floating_run_btn_pos';
+const STORAGE_KEY = 'floating_run_btn_pos_v2';
+const COLLAPSED_KEY = 'floating_run_btn_collapsed';
 
 function clamp(val: number, min: number, max: number) {
     return Math.max(min, Math.min(max, val));
@@ -34,14 +35,16 @@ const FloatingRunButton: React.FC = observer(() => {
         onPauseButtonClick,
         onResumeButtonClick,
     } = run_panel as any;
-    const [collapsed, setCollapsed] = useState(false);
-
-    // Draggable position — load from localStorage, default to middle-left
-    const [pos, setPos] = useState<{ x: number; y: number } | null>(() => {
-        const saved = loadPos();
-        if (saved) return saved;
-        return { x: 20, y: Math.floor(window.innerHeight * 0.45) };
+    const [collapsed, setCollapsed] = useState<boolean>(() => {
+        try { return localStorage.getItem(COLLAPSED_KEY) !== 'false'; } catch { return true; }
     });
+
+    useEffect(() => {
+        try { localStorage.setItem(COLLAPSED_KEY, String(collapsed)); } catch {}
+    }, [collapsed]);
+
+    // Draggable position — load from localStorage, default docked bottom-left
+    const [pos, setPos] = useState<{ x: number; y: number } | null>(() => loadPos());
     const dragRef = useRef<{
         startX: number; startY: number;
         origX: number; origY: number;
@@ -104,7 +107,7 @@ const FloatingRunButton: React.FC = observer(() => {
 
     const style: React.CSSProperties = pos
         ? { left: pos.x, top: pos.y, right: 'auto', bottom: 'auto' }
-        : { left: 20, top: '45vh', right: 'auto', bottom: 'auto' };
+        : { left: 16, bottom: 16, right: 'auto', top: 'auto' };
 
     // Derive display state cleanly. The bot stays "running" (loaded, active)
     // while paused — only the interpreter's tick loop is halted, so Stop is

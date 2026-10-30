@@ -893,3 +893,126 @@
         }
     }
 }
+
+/* ── Digittrader account switcher look ── */
+.acc-info__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 1.6rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    .acc-info__avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 3.6rem;
+        height: 3.6rem;
+        margin-right: 0.6rem;
+        border-radius: 50%;
+        border: 2px solid #2a9d8f;
+        background: #f1faf8;
+        color: #2a9d8f;
+        font-size: 1.6rem;
+        font-weight: 800;
+    }
+
+    .acc-info--is-virtual .acc-info__avatar {
+        border-color: #f0a030;
+        background: #fff7ea;
+        color: #e08a00;
+    }
+
+    .acc-info__account-type {
+        color: #2a9d8f;
+        font-weight: 600;
+    }
+
+    .acc-info--is-virtual .acc-info__account-type {
+        color: #e08a00;
+    }
+
+    .acc-currency__toggle {
+        border-radius: 0.8rem;
+        background: #f5f6f7;
+    }
+}
+
+.acc-dropdown {
+    top: calc(100% + 8px);
+    min-width: 20rem;
+    padding: 0.6rem;
+    background: #ffffff;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+
+    &__account {
+        align-items: flex-start;
+        gap: 0.2rem;
+        padding: 1rem 1.2rem;
+        border-radius: 0.8rem;
+        background: #ffffff;
+
+        &:not(:last-child) {
+            border-bottom: none;
+            margin-bottom: 0.4rem;
+        }
+
+        &:hover:not(.acc-dropdown__account--selected) {
+            background: #f5f6f7;
+        }
+
+        &--selected {
+            background: #d9dcdc;
+        }
+    }
+
+    &__account-type {
+        color: #2a9d8f;
+        font-size: 1.6rem;
+        font-weight: 500;
+
+        &--virtual {
+            color: #f0a030;
+        }
+    }
+
+    &__loginid {
+        color: #8a8f98;
+        font-size: 1.1rem;
+        letter-spacing: 0.02em;
+    }
+
+    &__balance {
+        color: #1f2937;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+    &__reset {
+        margin-top: 0.6rem;
+        padding: 0.3rem 1rem;
+        border: 1px solid #f0a030;
+        border-radius: 999px;
+        background: #fff4e0;
+        color: #c46f00;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:hover:not(:disabled) {
+            background: #ffe7bf;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}

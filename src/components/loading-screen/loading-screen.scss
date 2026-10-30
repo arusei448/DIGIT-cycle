@@ -771,3 +771,139 @@
   .ls2-center { width: 100%; }
   .ls2-bottom { gap: 1rem; }
 }
+
+/* ─────────────────────────────────────────────
+   Phase 1: Digittrader brand splash
+   ───────────────────────────────────────────── */
+
+.ls1-page {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  font-family: 'Inter', -apple-system, sans-serif;
+  border-top: 2px solid #f3e9d2;
+}
+
+.ls1-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ls1-logo-wrap {
+  position: relative;
+  width: 160px;
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.ls1-logo-ring {
+  position: absolute;
+  top: -12px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(11, 92, 255, 0.08);
+  animation: ls1-pulse 1.8s ease-in-out infinite;
+}
+
+.ls1-logo {
+  position: relative;
+  z-index: 2;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(11, 92, 255, 0.3);
+}
+
+.ls1-bars {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+
+  span {
+    width: 10px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #0b5cff, #00a651);
+    opacity: 0.75;
+    animation: ls1-bar 1.2s ease-in-out infinite;
+
+    &:nth-child(1) { height: 16px; animation-delay: 0s; }
+    &:nth-child(2) { height: 24px; animation-delay: 0.1s; }
+    &:nth-child(3) { height: 14px; animation-delay: 0.2s; }
+    &:nth-child(4) { height: 30px; animation-delay: 0.3s; }
+    &:nth-child(5) { height: 18px; animation-delay: 0.4s; }
+    &:nth-child(6) { height: 40px; animation-delay: 0.5s; }
+    &:nth-child(7) { height: 32px; animation-delay: 0.6s; }
+  }
+}
+
+.ls1-title {
+  margin: 24px 0 0;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #111827;
+}
+
+.ls1-tagline {
+  margin: 10px 0 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #6b7280;
+}
+
+.ls1-bar-track {
+  margin-top: 22px;
+  width: 220px;
+  height: 4px;
+  border-radius: 999px;
+  background: #eef0f3;
+  overflow: hidden;
+}
+
+.ls1-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00a651, #0b5cff);
+}
+
+.ls1-status {
+  margin: 14px 0 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #9ca3af;
+}
+
+@keyframes ls1-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.12); opacity: 0.5; }
+}
+
+@keyframes ls1-bar {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.6); }
+}
+
+.ls2-logo-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}

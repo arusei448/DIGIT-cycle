@@ -234,7 +234,7 @@ const AppContent = observer(() => {
             >
                 <div style={{ maxWidth: 520 }}>
                     <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '0.04em' }}>
-                        Marksyntrader
+                        Digittrader
                     </div>
                     <h1 style={{ margin: '1.25rem 0 0.5rem', fontSize: '1.1rem' }}>
                         The trading workspace could not connect

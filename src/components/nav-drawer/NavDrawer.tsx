@@ -9,19 +9,13 @@ const NAV_ITEMS = [
     { tab: DBOT_TABS.AUTO_SIGNALS,   icon: '📡', label: 'Auto-Signals' },
     { tab: DBOT_TABS.AHMED_LEARNING, icon: '🧱', label: 'Bot Builder' },
     { tab: DBOT_TABS.FREE_BOTS,           icon: '🤖', label: 'Free Bots' },
-    { tab: DBOT_TABS.AHMED_SCALPER_BOTS, icon: '⚡', label: 'Scalper Bots' },
     { tab: DBOT_TABS.AUTO_DIGITS,        icon: '◉',  label: 'Auto-Digits' },
-    { tab: DBOT_TABS.AUTO_LAB,           icon: '⌁',  label: 'Auto Lab' },
-    { tab: DBOT_TABS.DCIRCLES,           icon: '⬤',  label: 'D-Circles' },
     { tab: DBOT_TABS.DTRADER,           icon: '📊', label: 'D-Trader' },
     { tab: DBOT_TABS.SPEEDLAB,       icon: '⚡',  label: 'Speed Lab' },
     { tab: DBOT_TABS.HEDGE,          icon: '🔀', label: 'Hedge Trading' },
     { tab: DBOT_TABS.CHART,          icon: '📈', label: 'Charts' },
-    { tab: DBOT_TABS.MANUAL_TRADER,  icon: '🎯', label: 'Manual Trader' },
-    { tab: DBOT_TABS.AUTO_TRADES,    icon: '🔄', label: 'Auto Trades' },
     { tab: DBOT_TABS.COPY_TRADING,   icon: '📋', label: 'Copy Trading' },
     { tab: DBOT_TABS.REPORT,         icon: '📄', label: 'Reports' },
-    { tab: DBOT_TABS.BULK_TRADE,     icon: '📦', label: 'Bulk Trade' },
     { tab: DBOT_TABS.ANALYSIS,       icon: '🔍', label: 'Analysis' },
     { tab: DBOT_TABS.TUTORIAL,       icon: '📚', label: 'Tutorials' },
     { tab: DBOT_TABS.TRADING_SOFTWARE, icon: '💻', label: 'Trading Software' },
@@ -70,7 +64,7 @@ const NavDrawer: React.FC = observer(() => {
             {open && (
                 <div className='nav-drawer__panel'>
                     <div className='nav-drawer__header'>
-                        <span className='nav-drawer__brand'>⚡ AHMED TRADE</span>
+                        <span className='nav-drawer__brand'>⚡ DIGITTRADER</span>
                         <button className='nav-drawer__close' onClick={close}>✕</button>
                     </div>
                     <nav className='nav-drawer__list'>
@@ -87,7 +81,7 @@ const NavDrawer: React.FC = observer(() => {
                         ))}
                     </nav>
                     <div className='nav-drawer__footer'>
-                        <span>Ahmed Syn Trader</span>
+                        <span>Digittrader</span>
                         <span className='nav-drawer__footer-ver'>v2.0</span>
                     </div>
                 </div>

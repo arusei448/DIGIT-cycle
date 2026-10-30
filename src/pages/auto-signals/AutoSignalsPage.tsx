@@ -374,7 +374,7 @@ const AutoSignalsPage = ({
                 <div className='as-header__brand'>
                     <div className='as-brand-mark' aria-hidden='true'><Signal size={20} strokeWidth={2.2} /></div>
                     <div>
-                        <span className='as-eyebrow'>MARKSYNTRADER <i>/</i> LIVE DERIV SCANNER</span>
+                        <span className='as-eyebrow'>DIGITTRADER <i>/</i> LIVE DERIV SCANNER</span>
                         <h1>AUTO <span>— SIGNALS</span></h1>
                         <p>Read the alignment. Choose the handoff.</p>
                     </div>
@@ -494,7 +494,7 @@ const AutoSignalsPage = ({
             </div>
 
             <footer className='as-footer'>
-                <span><span className='as-footer__mark'>M</span> MARKSYNTRADER <b>·</b> AUTO SIGNALS</span>
+                <span><span className='as-footer__mark'>D</span> DIGITTRADER <b>·</b> AUTO SIGNALS</span>
                 <span><span className='as-footer__signal' /> Historical tick rates are not future win probabilities; one-tick trades can lose.</span>
                 <span className='as-footer__clock'>LOCAL UPDATE {clockText(now)}</span>
             </footer>

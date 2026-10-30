@@ -2,7 +2,7 @@
  * Opens Deriv Home's deposit sheet for real accounts.
  *
  * The deposit flow is intentionally opened in a separate tab. That keeps the
- * authenticated Marksyntrader tab alive as the return surface after the user
+ * authenticated Digittrader tab alive as the return surface after the user
  * completes or closes the deposit flow, and lets its existing balance
  * subscription receive the updated balance.
  */
@@ -19,7 +19,7 @@ export const useDepositReal = () => {
     const openDeposit = useCallback(() => {
         setState('loading');
         try {
-            // Keep Marksyntrader open while the external deposit sheet is active.
+            // Keep Digittrader open while the external deposit sheet is active.
             // Deriv Home does not expose a documented browser callback parameter
             // for this URL, so the original tab is the reliable return surface.
             const opened = window.open(DERIV_DEPOSIT_URL, '_blank', 'noopener,noreferrer');

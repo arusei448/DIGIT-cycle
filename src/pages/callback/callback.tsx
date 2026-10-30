@@ -65,7 +65,7 @@ const CallbackPage = () => {
             <div className='callback-page__card'>
                 <div className='callback-page__logo'>
                     <span className='callback-page__logo-icon'>⚡</span>
-                    <span className='callback-page__logo-text'>Marksyntrader</span>
+                    <span className='callback-page__logo-text'>Digittrader</span>
                 </div>
 
                 {status === 'loading' && (

@@ -107,7 +107,9 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                         }
                     }}
                 >
-                    <span className='acc-info__id' aria-hidden='true'></span>
+                    <span className='acc-info__id acc-info__avatar' aria-hidden='true'>
+                        {isVirtual ? 'D' : 'R'}
+                    </span>
                     <div className='acc-info__content'>
                         <div className='acc-info__account-type-header'>
                             <Text as='p' size='xs' className='acc-info__account-type'>
@@ -149,7 +151,7 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                                         balanceText
                                     )}
                                 </p>
-                                {isVirtual && !is_bot_running && (
+                                {isVirtual && !is_bot_running && isSingleAccount && (
                                     <button
                                         className={classNames('acc-info__reset-btn', {
                                             'acc-info__reset-btn--error': !!resetError,
@@ -158,7 +160,7 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                                         disabled={isResetting}
                                         onClick={e => {
                                             e.stopPropagation();
-                                            resetBalance();
+                                            resetBalance(activeLoginid ?? undefined);
                                         }}
                                     >
                                         {isResetting ? '…' : resetError ? '⚠' : '↺'}
@@ -249,6 +251,7 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                                     <Localize i18n_default_text='Real account' />
                                 )}
                             </Text>
+                            <span className='acc-dropdown__loginid'>{account.loginid}</span>
                             <Text size='xs' weight='bold' className='acc-dropdown__balance'>
                                 {account.currency ? (
                                     `${account.balance} ${getCurrencyDisplayCode(account.currency)}`
@@ -256,6 +259,25 @@ const AccountSwitcher = observer(({ activeAccount }: TAccountSwitcher) => {
                                     <Localize i18n_default_text='No currency assigned' />
                                 )}
                             </Text>
+                            {account.isVirtual && (
+                                <button
+                                    type='button'
+                                    className='acc-dropdown__reset'
+                                    disabled={isResetting || is_bot_running}
+                                    title={resetError ?? 'Reset demo balance to 10,000 USD'}
+                                    onClick={e => {
+                                        e.stopPropagation();
+                                        resetBalance(account.loginid);
+                                    }}
+                                    onKeyDown={e => e.stopPropagation()}
+                                >
+                                    {isResetting ? (
+                                        <Localize i18n_default_text='Resetting…' />
+                                    ) : (
+                                        <Localize i18n_default_text='Reset balance' />
+                                    )}
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>

@@ -314,7 +314,7 @@ const AppHeader = observer(() => {
             })}
             title={resetError ?? (resetSuccess ? 'Balance reset!' : 'Reset demo balance to 10,000 USD')}
             disabled={isResetting}
-            onClick={resetBalance}
+            onClick={() => resetBalance()}
         >
             {isResetting ? (
                 <span className='header__demo-reset-btn__spinner' />
